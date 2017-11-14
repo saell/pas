@@ -1,0 +1,6 @@
+[package]
+name = "personal_activity_sampler"
+version = "0.1.0"
+authors = ["saell <amdyn@gmx.de>"]
+
+[dependencies]
