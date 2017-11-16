@@ -1,28 +1,9 @@
+pub mod Config;
+
+// use Config::Config;
 use std::time;
-
-use std::io;
-use std::io::Stdin;
-
-pub struct Config{
-    interval_s: u32,
-}
-
-impl Config{
-    pub fn new( arguments: &[String] )-> Result<Config, &'static str>{
-        if arguments.len() == 1 {
-            let interval_s = 10;
-            return Ok(Config{interval_s});
-        }
-
-        if arguments.len() < 2 {
-          return Err("not enough arguments");
-        }
-
-        //let interval_s = arguments[1].clone();
-        let interval_s = 10;//for now as log as no changeable config is needed
-        Ok(Config{interval_s})
-    }
-}
+// use std::io;
+// use std::io::Stdin;
 
 #[cfg(test)]
 mod test {
@@ -41,7 +22,7 @@ struct Activity {
     categories :Box<String>
 }
 
-pub fn run(config :Config){
+pub fn run(config: Config::Config){
     println!("Interval {} s", config.interval_s);
 
     let elapsed_time_minutes = config.interval_s/60;
