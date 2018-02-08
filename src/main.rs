@@ -1,35 +1,5 @@
 extern crate personal_activity_sampler;
 
-pub mod config
-{
-    pub struct Config{
-        pub interval_s: u32,
-    }
-
-    pub fn new( arguments: &[String] )-> Result<Config, &'static str>{
-        if arguments.len() == 1 {
-            let interval_s = 10;
-            return Ok(Config{interval_s});
-        }
-
-        if arguments.len() < 2 {
-          return Err("not enough arguments");
-        }
-
-        //let interval_s = arguments[1].clone();
-        let interval_s = 10;//for now as log as no changeable config is needed
-        Ok(Config{interval_s})
-    }
-    #[cfg(test)]
-    mod test {
-        use super::*;
-        #[test]
-        fn test_name() {
-            // assert_eq!(new(""), Err)
-        }
-    }
-}
-// use config::Config
 // // struct Activity {
 // //     starttime :time::Instant,
 // //     duration: time::Duration,
@@ -61,15 +31,15 @@ pub mod config
 use std::{thread, time};
 use std::env;
 use std::process;
-//
-// use personal_activity_sampler::Config;
-//
+
+use personal_activity_sampler::configuration;
+
 fn main() {
     println!("Plant Activity Sampler!");
 
     let arguments: Vec<String> = env::args().collect();
 
-    let config = config::new(&arguments).unwrap_or_else(|err| {
+    let config = personal_activity_sampler::configuration::new(&arguments).unwrap_or_else(|err| {
         println!("Problem parsing arguments: {}", err);
         process::exit(1);
     });
