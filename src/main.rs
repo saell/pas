@@ -8,12 +8,18 @@ extern crate personal_activity_sampler;
 // //     categories :Box<String>
 // // }
 //
-// pub fn run(config: config::Config){
-//     println!("Interval {} s", config.interval_s);
-//
-//     let elapsed_time_minutes = config.interval_s/60;
-//     println!( "What have you done the in the last {} minutes? Choose!:", elapsed_time_minutes );
-//
+use personal_activity_sampler::configuration;
+
+pub fn ask_for_activity (elapsed_time_s: u32){
+    let elapsed_time_minutes = elapsed_time_s/60;
+    println!( "What have you done the in the last {} minutes? Choose!:", elapsed_time_minutes );
+
+}
+
+pub fn run(config: configuration::Config){
+
+    ask_for_activity(config.interval_s);
+
 //     // let mut categories :Box<String>;
 //     //todo  fill categories from already known ones
 //     // for categorie in categories {
@@ -26,13 +32,13 @@ extern crate personal_activity_sampler;
 //     //check intervall is over
 //     //ask for activity
 //
-// }
-//
+}
+
 use std::{thread, time};
 use std::env;
 use std::process;
 
-use personal_activity_sampler::configuration;
+
 
 fn main() {
     println!("Plant Activity Sampler!");
@@ -54,4 +60,5 @@ fn main() {
     println!("{}", now.elapsed().as_secs());
 
     // personal_activity_sampler::run( config );
+    run( config );
 }
