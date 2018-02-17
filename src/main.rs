@@ -16,6 +16,8 @@ pub fn list_categories<'a>(inp: &[&'a str]) {
     }
 }
 
+#[macro_use]
+extern crate text_io;
 pub fn ask_for_activity<'a>(elapsed_time_s: u32, categories: &[&'a str]) {
     let elapsed_time_minutes = elapsed_time_s / 60;
     println!(
@@ -27,6 +29,8 @@ pub fn ask_for_activity<'a>(elapsed_time_s: u32, categories: &[&'a str]) {
 
     println!("Choose Activity or write new name to add to list\n>");
 
+    let choice: String = read!();
+    println!("{}", choice );
 }
 
 pub fn run(config: configuration::Config) {
@@ -37,10 +41,8 @@ pub fn run(config: configuration::Config) {
     //Choose categories from list or enter new one
     ask_for_activity(config.interval_s, &categories);
 
-    // let mut enterNewCategorie = false;
-
     //check intervall is over
-    //ask for activity
+
     //todo store already known categories to file
 }
 
@@ -48,8 +50,6 @@ use std::{thread, time};
 use std::env;
 use std::process;
 
-
-//todo add command line arguments parsing: e.g. https://crates.io/crates/clap
 fn main() {
     println!("Plant Activity Sampler!");
     println!("=======================\n");
