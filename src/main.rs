@@ -10,20 +10,23 @@ use personal_activity_sampler::configuration;
 // }
 
 // pub fn anagrams_for<'a>( inp: &[&'a str]) -> Vec<&'a str> {
-pub fn list_categories<'a>( inp: &[&'a str]){
+pub fn list_categories<'a>(inp: &[&'a str]) {
     for categorie in inp {
-        println!( "{}", categorie );
+        println!("{}", categorie);
     }
 }
 
-pub fn ask_for_activity <'a>(elapsed_time_s: u32, categories: &[&'a str]){
-    let elapsed_time_minutes = elapsed_time_s/60;
-    println!( "What have you done the in the last {} minutes? Choose!:", elapsed_time_minutes );
+pub fn ask_for_activity<'a>(elapsed_time_s: u32, categories: &[&'a str]) {
+    let elapsed_time_minutes = elapsed_time_s / 60;
+    println!(
+        "What have you done the in the last {} minutes? Choose!:",
+        elapsed_time_minutes
+    );
 
-    list_categories( &categories );
+    list_categories(&categories);
 }
 
-pub fn run(config: configuration::Config){
+pub fn run(config: configuration::Config) {
 
     //todo  load already known categories from file
     let mut categories: Vec<&str> = vec!["Bugfixing", "organisatorisch", "newFeatures"];
@@ -31,7 +34,7 @@ pub fn run(config: configuration::Config){
     //Choose categories from list or enter new one
     ask_for_activity(config.interval_s, &categories);
 
-    println!( "x - enter new Activity" );
+    println!("x - enter new Activity");
 
 
     // let mut enterNewCategorie = false;
@@ -46,7 +49,7 @@ use std::env;
 use std::process;
 
 
-
+//todo add command line arguments parsing: e.g. https://crates.io/crates/clap
 fn main() {
     println!("Plant Activity Sampler!");
 
@@ -67,5 +70,5 @@ fn main() {
     println!("{}", now.elapsed().as_secs());
 
     // personal_activity_sampler::run( config );
-    run( config );
+    run(config);
 }
