@@ -9,10 +9,9 @@ use personal_activity_sampler::configuration;
 //     categories :Box<String>
 // }
 
-pub fn list_categories<'a>(inp: &[&'a str]) {
-    let index=1;
-    for (index, categorie) in inp.iter().enumerate() {
-        println!("{}\t{}", index, categorie);
+pub fn list_categories<'a>(categories: &[&'a str]) {
+    for (index, category) in categories.iter().enumerate() {
+        println!("{}\t{}", index, category);
     }
 }
 
@@ -31,17 +30,25 @@ pub fn ask_for_activity<'a>(elapsed_time_s: u32, categories: &[&'a str]) {
 
     let choice: String = read!();
     println!("{}", choice );
+    //todo check choice
+    //if choice is text
+    //      if not known activity(already in list)
+    //          add activity to list
+    //else if number
+    //      if not in list
+    //          error
+    //update activity
 }
 
 pub fn run(config: configuration::Config) {
 
     //todo load already known categories from file
-    let mut categories: Vec<&str> = vec!["bug-fixing", "organize", "new feature Box"];
+    let categories: Vec<&str> = vec!["bug-fixing", "organize", "new feature Box"];
 
     //Choose categories from list or enter new one
     ask_for_activity(config.interval_s, &categories);
 
-    //check intervall is over
+    //check interval is over
 
     //todo store already known categories to file
 }
