@@ -1,6 +1,8 @@
-extern crate personal_activity_sampler;
+extern crate pas;
 
-use personal_activity_sampler::configuration;
+use pas::configuration;
+
+
 // struct Activity {
 //     starttime :time::Instant,
 //     duration: time::Duration,
@@ -9,11 +11,6 @@ use personal_activity_sampler::configuration;
 //     categories :Box<String>
 // }
 
-pub fn list_categories<'a>(categories: &[&'a str]) {
-    for (index, category) in categories.iter().enumerate() {
-        println!("{}\t{}", index, category);
-    }
-}
 
 #[macro_use]
 extern crate text_io;
@@ -24,7 +21,7 @@ pub fn ask_for_activity<'a>(elapsed_time_s: u32, categories: &[&'a str]) {
         elapsed_time_minutes
     );
 
-    list_categories(&categories);
+    pas::list_categories(&categories);
 
     println!("Choose Activity or write new name to add to list\n>");
 
@@ -62,7 +59,7 @@ fn main() {
     println!("=======================\n");
     let arguments: Vec<String> = env::args().collect();
 
-    let config = personal_activity_sampler::configuration::new(&arguments).unwrap_or_else(|err| {
+    let config = pas::configuration::new(&arguments).unwrap_or_else(|err| {
         println!("Problem parsing arguments: {}", err);
         process::exit(1);
     });

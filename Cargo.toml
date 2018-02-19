@@ -5,3 +5,12 @@ authors = ["saell <amdyn@gmx.de>"]
 
 [dependencies]
 text_io = "0.1.7"
+
+[lib]
+name = "pas"
+path = "src/pas/lib.rs"
+
+[[bin]]
+name = "pas"
+test = false
+doc = false
