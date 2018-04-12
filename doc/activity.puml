@@ -1,0 +1,13 @@
+@startuml
+(*) -->"read config"
+
+--> "sleep(interval)"
+
+--> "ask for Activity"
+
+--> "add activity"
+
+--> "store Activities"
+
+-->(*)
+@enduml

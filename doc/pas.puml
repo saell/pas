@@ -1,0 +1,45 @@
+@startuml
+
+class pas_Cli{
+  Configuration  parseArgs(args[] String)
+}
+
+class pas {
+    activities[] : Activity
+    knownCategories[] : Category
+
+
+    askForActivity(elapsedTime)
+    loadActivities();
+    storeActivities();
+}
+
+class Activity {
+    startTime : time
+    endTime : time
+    category : Category
+
+    printout()
+}
+
+class Configuration {
+    interval_s:int
+    printout()
+}
+
+class Category {
+    printout()
+}
+
+pas_Cli "1" *-- "1" pas
+pas "1" *- "1" Configuration
+pas "1" *-- "*" Activity
+pas "1" *-- "*" Category
+
+Activity "1" *- "1" Category
+
+@enduml
+
+@startuml
+(*)->as
+@enduml
